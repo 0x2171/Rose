@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Rose</title>
+  <style>
+    body {
+      height: 100%;
+      width: 100%;
+      background: #122139;
+      overflow: hidden;
+    }
+
+    .rose-container {
+      width: 100px;
+      height: 300px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      transform: scale(2.5);
+      z-index: 1;
+    }
+    .rose-container div {
+      position: absolute;
+    }
+
+    .rose-petals > .petal {
+      background: linear-gradient(to bottom, #d52d58, #b81b43);
+      width: 45px;
+      height: 80px;
+      position: absolute;
+      transition: all 0.5s ease-out;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .rose-petals > .petal:nth-child(1) {
+      border-radius: 0px 40px;
+      left: 24px;
+      top: -2px;
+      animation: openRose1 3s ease-in-out;
+      animation-fill-mode: forwards;
+      animation-delay: 2s;
+      background: linear-gradient(to bottom, #d52d58, #b81b43);
+    }
+
+    .rose-petals > .petal:nth-child(2), .rose-petals > .petal:nth-child(4){
+      border-radius: 0px 30px 0px 30px;
+      background: linear-gradient(to bottom, #b81b43, #9e183a);
+      left: 0;
+      transform-origin: bottom right;
+    }
+
+    .rose-petals > .petal:nth-child(3), .rose-petals > .petal:nth-child(5){
+      border-radius: 30px 0px  30px 0px;
+      left: 40px;
+      transform-origin: bottom left;
+    }
+
+    .rose-petals > .petal:nth-child(7) {
+      border-radius: 30px 0px 30px 0px;
+      background: linear-gradient(to bottom, #b81b43, #9e183a);
+      left: 36px;
+      top: 12px;
+      rotate: 8deg;
+      transform-origin: bottom right;
+    }
+
+    .rose-petals > .petal:nth-child(6) {
+      border-radius: 0px 30px 0px 30px;
+      background: linear-gradient(to bottom, #b81b43, #9e183a);
+      rotate: -8deg;
+      left: 0px;
+      top: 3px;
+      transform-origin: bottom right;
+    }
+
+    .rose-petals > .petal:nth-child(2) {
+      animation: openRose2 3s ease-in-out;
+      animation-fill-mode: forwards;
+      z-index: 5;
+      background: linear-gradient(to bottom, #9e183a, #b81b43);
+      top: 10px;
+      height: 70px;
+      animation-delay: 2s;
+    }
+
+    .rose-petals > .petal:nth-child(3) {
+      animation: openRose3 3s ease-in-out;
+      animation-fill-mode: forwards;
+      z-index: 4;
+      background: linear-gradient(to bottom, #9e183a, #b81b43);
+      top: 10px;
+      height: 70px;
+      animation-delay: 2s;
+    }
+
+    .rose-petals > .petal:nth-child(4) {
+      animation: openRose4 3s ease-in-out;
+      animation-fill-mode: forwards;
+      z-index: 3;
+      background: linear-gradient(to bottom, #b81b43, #9e183a);
+      top: 5px;
+      height: 75px;
+      animation-delay: 2s;
+    }
+
+    .rose-petals > .petal:nth-child(5) {
+      animation: openRose5 3s ease-in-out;
+      animation-fill-mode: forwards;
+      z-index: 2;
+      background: linear-gradient(to bottom, #b81b43, #9e183a);
+      top: 5px;
+      height: 75px;
+      animation-delay: 2s;
+    }
+
+    .rose-petals > .petal:nth-child(6) {
+      animation: openRose6 3s ease-in-out;
+      animation-fill-mode: forwards;
+      z-index: 1;
+      background: linear-gradient(to bottom, #c9204b, #b81b43);
+      top: "";
+      height: "";
+      animation-delay: 2s;
+    }
+
+    .rose-petals > .petal:nth-child(7) {
+      animation: openRose7 3s ease-in-out;
+      animation-fill-mode: forwards;
+      z-index: 0;
+      background: linear-gradient(to bottom, #c9204b, #b81b43);
+      top: "";
+      height: "";
+      animation-delay: 2s;
+    }
+
+    .rose-leaves > .leaf:nth-last-child(1) {
+      width: 55px;
+      height: 30px;
+      background: #338f37;
+      position: absolute;
+      top: 60px;
+      left: 15px;
+      border-radius: 100px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .rose-leaves > .leaf:nth-child(1) {
+      width: 9px;
+      height: 230px;
+      border-radius: 0px 0px 0px 10px;
+      top: 80px;
+      background: linear-gradient(to bottom, #066406, #004d00);
+      left: 37.5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .thorns > .thorn {
+      width: 29px;
+      height: 30px;
+      background: #066406;
+      top: 100px;
+      left: 10px;
+      z-index: -1;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .thorns > .thorn:after {
+      width: 41px;
+      height: 31px;
+      border-radius: 100%;
+      background: #122139;
+      content: "";
+      position: absolute;
+      left: -12px;
+      top: 17px;
+    }
+
+    .thorns > .thorn:before {
+      width: 41px;
+      height: 31px;
+      border-radius: 100%;
+      background: #122139;
+      content: "";
+      position: absolute;
+      left: -11px;
+      top: -11px;
+    }
+
+    .thorns > .thorn:nth-child(2) {
+      top: 150px;
+      transform: rotate(180deg);
+      left: 45px;
+    }
+
+    .thorns > .thorn:nth-child(3) {
+      top: 180px;
+    }
+
+    .thorns > .thorn:nth-child(4) {
+      top: 220px;
+      transform: rotate(180deg);
+      left: 45px;
+    }
+
+    @keyframes openRose1 {
+      50% {
+        transform: rotate(-10deg);
+      }
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+
+    @keyframes openRose2 {
+      90% {
+        transform: rotate(-61deg);
+      }
+	  100% {
+        transform: rotate(-60deg);
+      }
+    }
+
+    @keyframes openRose3 {
+      90% {
+        transform: rotate(61deg);
+      }
+	  100% {
+        transform: rotate(60deg);
+      }
+    }
+
+    @keyframes openRose4 {
+      100% {
+        transform: rotate(-30deg);
+      }
+    }
+
+    @keyframes openRose5 {
+      90% {
+        transform: rotate(31deg);
+      }
+	  100% {
+        transform: rotate(30deg);
+      }
+    }
+
+    @keyframes openRose6 {
+      90% {
+        transform: rotate(-8deg);
+      }
+	  100% {
+        transform: rotate(-7deg);
+      }
+    }
+
+    @keyframes openRose7 {
+      90% {
+        transform: rotate(8deg);
+      }
+	  100% {
+        transform: rotate(7deg);
+      }
+    }
+
+   .glowing-circle {
+	  position: absolute;
+	  width: 50px;
+	  height: 50px;
+	  left: 17.5%;
+	  top: 15%;
+	  background: rgba(150, 0, 0, 0.01);
+	  border-radius: 50%;
+	  z-index: 3;
+	}
+
+	.glowing-circle.glow {
+	  animation: glowing 1s ease-in-out infinite alternate;
+	}
+
+	@keyframes glowing {
+	  0% {
+		box-shadow: 0 0 130px #ff69b4, 0 0 140px #ff69b4, 0 0 150px #ff1493, 0 0 160px #ff1493, 0 0 170px #ff0000, 0 0 180px #ff0000, 0 0 190px #ff0000;
+	  }
+	  100% {
+		box-shadow: 0 0 140px #ff69b4, 0 0 150px #ff1493, 0 0 160px #ff1493, 0 0 170px #ff1493, 0 0 180px #ff0000, 0 0 190px #ff0000, 0 0 200px #ff0000;
+	  }
+	}
+  </style>
+</head>
+<body>
+  <div class="rose-container">
+    <div class="thorns">
+      <div class="thorn"></div>
+      <div class="thorn"></div>
+      <div class="thorn"></div>
+      <div class="thorn"></div>
+    </div>
+    <div class="rose-leaves">
+      <div class="leaf"></div>
+      <div class="leaf"></div>
+    </div>
+    <div class="rose-petals">
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+    </div>
+    <div class="glowing-circle" id="glowingCircle"></div>
+  </div>
+  <script>
+  window.onload = function() {
+  document.getElementById('bheart').addEventListener('click', function() {
+    var glowingCircle = document.getElementById('glowingCircle');
+    if (glowingCircle.classList.contains('glow')) {
+      glowingCircle.classList.remove('glow');
+    } else {
+      glowingCircle.classList.add('glow');
+    }
+  });
+};
+</script>
+<button id="bheart" class="heart-button">❤️</button>
+<style>
+	.heart-button {
+	  position: absolute;
+	  padding: 0px 0px;
+	  background-color: transparent;
+	  border: none;
+	  color: rgb(255, 0, 0, 0.6);
+	  cursor: pointer;
+	  transition: transform 0.3s ease;
+	  transform: scale(8);
+	  top: 60px;
+	  left: 60px;
+	}
+
+	.heart-button:hover {
+	  transform: scale(9);
+	  color: rgb(255, 0, 0, 0.9);
+	}
+</style>
+</body>
+</html>
